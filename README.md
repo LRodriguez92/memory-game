@@ -19,4 +19,4 @@
 * The player has to click on a second cell to reveal the next image
 * If the first and second images match, they stay visible and the player continues to find the next pair
 * If the first and second images do not match, they become hidden, and the player continues to find the next pair
-* Once all of the images are found, the player wins
+* Once all of the images are found, the player wins the game
