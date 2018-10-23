@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: red solid;
+  height: 100vh;
+}
+
+#timer{
+  border: blue solid;
+  width: 60%;
+  height: 15%;
+}
+
+#board {
+  border: green solid;
+  margin-top: 50px;
+  height: 70%;
+  width: 80%;
+}

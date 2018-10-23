@@ -20,3 +20,6 @@
 * If the first and second images match, they stay visible and the player continues to find the next pair
 * If the first and second images do not match, they become hidden, and the player continues to find the next pair
 * Once all of the images are found, the player wins the game
+
+## Wireframes
+![](IMG_7341.JPG) ![](IMG_7342.JPG) ![](IMG_7343.JPG) ![](IMG_7344.JPG) ![](IMG_7345.JPG) 
