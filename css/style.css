@@ -20,8 +20,16 @@
 }
 
 #board {
-  border: green solid;
+  /* border: green solid; */
+  display: flex;
+  flex-wrap: wrap;
   margin-top: 50px;
   height: 70%;
   width: 80%;
 }
+
+/* .cells {
+  border: solid;
+  width: 10%;
+  height: 20%;
+} */
