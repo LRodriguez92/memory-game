@@ -22,4 +22,4 @@
 * Once all of the images are found, the player wins the game
 
 ## Wireframes
-![](IMG_7341.JPG) ![](IMG_7342.JPG) ![](IMG_7343.JPG) ![](IMG_7344.JPG) ![](IMG_7345.JPG) 
+![](wireframes/IMG_7341.JPG) ![](wireframes/IMG_7342.JPG) ![](wireframes/IMG_7343.JPG) ![](wireframes/IMG_7344.JPG) ![](wireframes/IMG_7345.JPG) 
