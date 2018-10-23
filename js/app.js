@@ -1,7 +1,8 @@
 const board = document.querySelector('#board');
 const images = ['images/ifrit.png', 'images/cloud.png', 'images/sharingan.png', 'images/rinnegan.png', 'images/sephiroth.png',
 ];
-let clonedImages = [];
+let levelImages = [];
+
 
 const level1 = {
   board:
@@ -9,7 +10,9 @@ const level1 = {
    [0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
    [0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
    [0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
-   [0, 0, 1, 0, 0, 0, 0, 1, 0, 0]]
+   [0, 0, 1, 0, 0, 0, 0, 1, 0, 0]],
+
+  images: 5
 };
 
 const level2 = {
@@ -18,9 +21,10 @@ const level2 = {
    [0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
    [1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
    [0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
-   [1, 0, 1, 0, 1, 0, 1, 0, 1, 0]]
+   [1, 0, 1, 0, 1, 0, 1, 0, 1, 0]],
+
  };
-console.log(level1.board.length);
+
 function renderBoard(level) {
   let idNum = 0; // used to add number in id names
 
@@ -47,16 +51,33 @@ function renderBoard(level) {
       }
     }
   }
-  // for (let i = 0; i < images.length; i++) {
-  //   let cell = document.querySelector(`#cell${i}`);
-  //   let img = document.createElement('img');
-  //   img.setAttribute('src', );
-  //   img.style.width = '100%';
-  //   img.style.height = '100%';
-  //   cell.appendChild(img);
+  doubleImageArr(level);
+  console.log(levelImages);
+  // pairImages = images;
+  // for (let i = 0; i < level.images * 2; i++) {
+  //   if (i < level.images) {
+  //     pairImages.push(images[i]);
+  //   }
+
+    // let cell = document.querySelector(`#cell${i}`);
+    // let img = document.createElement('img');
+    // img.setAttribute('src', );
+    // img.style.width = '100%';
+    // img.style.height = '100%';
+    // cell.appendChild(img);
   // }
 }
 
+// Doubles the images in the array
+function doubleImageArr(level) {
+  for (let i = 0; i < level.images; i++) {
+    levelImages.push(images[i]);
+  }
+  for (let i = 0; i < level.images * 2; i++) {
+    if (i < level.images) {
+      levelImages.push(images[i]);
+    }
+  }
+}
 
-// cloneImages();
 renderBoard(level1);
