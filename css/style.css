@@ -9,12 +9,17 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: red solid;
+  /* border: red solid; */
   height: 100vh;
 }
 
 #timer{
-  border: blue solid;
+  /* border: blue solid; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+  font-weight: bold;
   width: 60%;
   height: 15%;
 }

@@ -1,5 +1,5 @@
 const board = document.querySelector('#board');
-const board1 = [
+const level1 = [
   [0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
   [0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
   [0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
@@ -7,7 +7,7 @@ const board1 = [
   [0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
 ];
 
-const board2 = [
+const level2 = [
   [1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
   [0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
   [1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
@@ -15,10 +15,10 @@ const board2 = [
   [1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
 ];
 
-function renderBoard() {
-  for (let i = 0; i < board1.length; i++) {
-    for (let j = 0; j < board1[i].length; j++) {
-      if (board1[i][j] === 1) {
+function renderBoard(level) {
+  for (let i = 0; i < level.length; i++) {
+    for (let j = 0; j < level[i].length; j++) {
+      if (level[i][j] === 1) {
         let card = document.createElement('div');
         card.className = 'cell';
         card.style.backgroundColor = '#000';
@@ -37,4 +37,4 @@ function renderBoard() {
     }
   }
 }
-renderBoard();
+renderBoard(level1);
