@@ -1,8 +1,10 @@
 const board = document.querySelector('#board');
-const images = ['images/ifrit.png', 'images/cloud.png', 'images/sharingan.png', 'images/rinnegan.png', 'images/sephiroth.png',
+const images = ['images/ifritfull.png', 'images/odinfull.png', 'images/sharingan.png', 'images/caitsithfull.png', 'images/bahamutfull.png',
 ];
 let levelImages = [];
 let randomImages = [];
+let firstImage;
+let secondImage;
 
 
 
@@ -25,8 +27,20 @@ const level2 = {
    [0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
    [1, 0, 1, 0, 1, 0, 1, 0, 1, 0]],
 
+   images: 5
  };
 
+board.addEventListener('click', (event) => {
+  showImage(event);
+
+});
+
+function showImage(event) {
+  event.target.firstChild.style.display = 'block';
+  console.log(e.target.firstChild);
+}
+
+// Renders the random images into the cells
 function renderImages() {
   for (let i = 0; i < randomImages.length; i++) {
     let cell = document.querySelector(`#cell${i}`);
@@ -34,6 +48,9 @@ function renderImages() {
     img.setAttribute('src', randomImages[i]);
     img.style.width = '100%';
     img.style.height = '100%';
+    img.style.display = 'none';
+    img.id = `img${i}`;
+    img.className = 'images';
     cell.appendChild(img);
   }
 }
@@ -56,7 +73,6 @@ function randomizeImages(level) {
     let randNum = Math.floor(Math.random() * levelImages.length);
     let removed = levelImages.splice(randNum, 1);
     randomImages.push(removed);
-    console.log(`${removed} was removed`);
   }
 }
 
