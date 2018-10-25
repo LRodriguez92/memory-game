@@ -2,6 +2,7 @@ const board = document.querySelector('#board');
 const timerEl = document.querySelector('#timer');
 const images = ['images/ifritfull.png', 'images/odinfull.png', 'images/sharingan.png', 'images/caitsithfull.png', 'images/bahamutfull.png',
 ];
+let currentLevel;
 let levelImages = [];
 let randomImages = [];
 let firstImage;
@@ -20,7 +21,9 @@ const level1 = {
 
   images: 5,
 
-  time: 10 // seconds
+  time: 30, // seconds
+
+  penalty: 2
 };
 
 const level2 = {
@@ -35,9 +38,9 @@ const level2 = {
  };
 
 board.addEventListener('click', (event) => {
-  getImages(event);
-  isMatch(event);
-  win();
+    getImages(event);
+    isMatch();
+    win();
 });
 
 function timer(level) {
@@ -72,18 +75,17 @@ function lose() {
   console.log("Time's up!");
 }
 
-function isMatch(event) {
+function isMatch() {
   if (firstImage && secondImage) {
     if (firstImage.getAttribute('src') === secondImage.getAttribute('src')) {
-      // console.log(firstImage, secondImage);
       console.log("Match!");
       matches += 1;
       firstImage = undefined;
       secondImage = undefined;
 
     } else {
-      // console.log(firstImage, secondImage);
       console.log("Wrong!");
+      time -= currentLevel.penalty;
       setTimeout(hideImages, 1000);
     }
   }
@@ -157,6 +159,7 @@ function randomizeImages(level) {
 function renderBoard(level) {
   let idNum = 0; // Used to add number to id names
   winningMatches = level.images; // winningMatches decides
+  currentLevel = level;
   timer(level);
   console.log(`winning matches is ${winningMatches}`);
   for (let i = 0; i < level.board.length; i++) {
