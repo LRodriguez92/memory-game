@@ -7,6 +7,7 @@ let firstImage;
 let secondImage;
 let winningMatches; // Determined in renderBoard according to # of images per level
 let matches = 0; // Updates when there's a match
+let time;
 
 const level1 = {
   board:
@@ -18,7 +19,7 @@ const level1 = {
 
   images: 5,
 
-  time: 30000 // 30 seconds
+  time: 10 // seconds
 };
 
 const level2 = {
@@ -37,6 +38,25 @@ board.addEventListener('click', (event) => {
   isMatch(event);
   winOrLose();
 });
+
+const countDown = setInterval(() => {
+  if (time > 1) {
+    time -= 1; console.log(time);
+  } else {
+    stopTimer();
+  }
+}, 1000);
+
+function timer(level) {
+  time = level.time;
+  console.log(level.time);
+    countDown;
+}
+
+function stopTimer() {
+  console.log("Time's up!");
+  clearInterval(countDown);
+}
 
 function winOrLose() {
   if (matches === winningMatches) {
@@ -127,10 +147,9 @@ function randomizeImages(level) {
 }
 
 function renderBoard(level) {
-  // Used to add number to id names
-  let idNum = 0;
-  // winningMatches decides
-  winningMatches = level.images;
+  let idNum = 0; // Used to add number to id names
+  winningMatches = level.images; // winningMatches decides
+  timer(level);
   console.log(`winning matches is ${winningMatches}`);
   for (let i = 0; i < level.board.length; i++) {
     for (let j = 0; j < level.board[i].length; j++) {
