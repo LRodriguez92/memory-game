@@ -36,8 +36,14 @@ const level2 = {
 board.addEventListener('click', (event) => {
   getImages(event);
   isMatch(event);
-  winOrLose();
+  win();
 });
+
+function timer(level) {
+  time = level.time;
+  console.log(level.time);
+  countDown;
+}
 
 const countDown = setInterval(() => {
   if (time > 1) {
@@ -47,21 +53,19 @@ const countDown = setInterval(() => {
   }
 }, 1000);
 
-function timer(level) {
-  time = level.time;
-  console.log(level.time);
-    countDown;
-}
-
 function stopTimer() {
-  console.log("Time's up!");
+  lose();
   clearInterval(countDown);
 }
 
-function winOrLose() {
+function win() {
   if (matches === winningMatches) {
     console.log('You Win!');
   }
+}
+
+function lose() {
+  console.log("Time's up!");
 }
 
 function isMatch(event) {
