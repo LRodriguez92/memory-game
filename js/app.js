@@ -35,25 +35,28 @@ const level2 = {
 board.addEventListener('click', (event) => {
   getImages(event);
   isMatch(event);
+  winOrLose();
 });
 
 function winOrLose() {
-
+  if (matches === winningMatches) {
+    console.log('You Win!');
+  }
 }
 
 function isMatch(event) {
   if (firstImage && secondImage) {
     if (firstImage.getAttribute('src') === secondImage.getAttribute('src')) {
-      console.log(firstImage, secondImage);
+      // console.log(firstImage, secondImage);
       console.log("Match!");
+      matches += 1;
       firstImage = undefined;
       secondImage = undefined;
 
     } else {
-      console.log(firstImage, secondImage);
+      // console.log(firstImage, secondImage);
       console.log("Wrong!");
       setTimeout(hideImages, 1000);
-      console.log(`div is ${event.target.firstChild}`);
     }
   }
 }
