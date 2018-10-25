@@ -5,8 +5,8 @@ let levelImages = [];
 let randomImages = [];
 let firstImage;
 let secondImage;
-
-
+let winningMatches; // Determined in renderBoard according to # of images per level
+let matches = 0; // Updates when there's a match
 
 const level1 = {
   board:
@@ -16,7 +16,9 @@ const level1 = {
    [0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
    [0, 0, 1, 0, 0, 0, 0, 1, 0, 0]],
 
-  images: 5
+  images: 5,
+
+  time: 30000 // 30 seconds
 };
 
 const level2 = {
@@ -31,6 +33,33 @@ const level2 = {
  };
 
 board.addEventListener('click', (event) => {
+  getImages(event);
+  isMatch(event);
+});
+
+function winOrLose() {
+
+}
+
+function isMatch(event) {
+  if (firstImage && secondImage) {
+    if (firstImage.getAttribute('src') === secondImage.getAttribute('src')) {
+      console.log(firstImage, secondImage);
+      console.log("Match!");
+      firstImage = undefined;
+      secondImage = undefined;
+
+    } else {
+      console.log(firstImage, secondImage);
+      console.log("Wrong!");
+      setTimeout(hideImages, 1000);
+      console.log(`div is ${event.target.firstChild}`);
+    }
+  }
+}
+
+// Gets saves both images that were clicked into variables and shows them
+function getImages(event) {
   if (!firstImage || !secondImage) {
     if (!firstImage) {
       firstImage = imageSrc();
@@ -38,26 +67,20 @@ board.addEventListener('click', (event) => {
     } else {
       secondImage = imageSrc();
       showImage(event);
-      if (firstImage === secondImage) {
-          console.log("Match!");
-          firstImage = undefined;
-          secondImage = undefined;
-      } else {
-        console.log("Wrong!");
-        firstImage = undefined;
-        secondImage = undefined;
-      }
     }
   }
-  console.log(firstImage, secondImage);
-});
-
-function imageSrc() {
-  return event.target.firstChild.getAttribute('src');
 }
 
+function imageSrc() {
+  return event.target.firstChild;
+}
+
+// Hides images and clears first & second image variables
 function hideImages() {
-  document.querySelector('.images').style.display = 'none';
+  firstImage.style.display = 'none';
+  secondImage.style.display = 'none';
+  firstImage = undefined;
+  secondImage = undefined;
 }
 
 function showImage(event) {
@@ -101,7 +124,11 @@ function randomizeImages(level) {
 }
 
 function renderBoard(level) {
-  let idNum = 0; // used to add number to id names
+  // Used to add number to id names
+  let idNum = 0;
+  // winningMatches decides
+  winningMatches = level.images;
+  console.log(`winning matches is ${winningMatches}`);
   for (let i = 0; i < level.board.length; i++) {
     for (let j = 0; j < level.board[i].length; j++) {
       if (level.board[i][j] === 1) {
