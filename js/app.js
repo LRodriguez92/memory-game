@@ -1,4 +1,5 @@
 const board = document.querySelector('#board');
+const timerEl = document.querySelector('#timer');
 const images = ['images/ifritfull.png', 'images/odinfull.png', 'images/sharingan.png', 'images/caitsithfull.png', 'images/bahamutfull.png',
 ];
 let levelImages = [];
@@ -41,6 +42,7 @@ board.addEventListener('click', (event) => {
 
 function timer(level) {
   time = level.time;
+  timerEl.innerHTML = time;
   console.log(level.time);
   countDown;
 }
@@ -48,7 +50,9 @@ function timer(level) {
 const countDown = setInterval(() => {
   if (time > 1) {
     time -= 1; console.log(time);
+    timerEl.innerHTML = time;
   } else {
+    timerEl.innerHTML = "Time's Up!";
     stopTimer();
   }
 }, 1000);
