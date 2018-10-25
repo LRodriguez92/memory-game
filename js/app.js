@@ -31,13 +31,37 @@ const level2 = {
  };
 
 board.addEventListener('click', (event) => {
-  showImage(event);
-
+  if (!firstImage || !secondImage) {
+    if (!firstImage) {
+      firstImage = imageSrc();
+      showImage(event);
+    } else {
+      secondImage = imageSrc();
+      showImage(event);
+      if (firstImage === secondImage) {
+          console.log("Match!");
+          firstImage = undefined;
+          secondImage = undefined;
+      } else {
+        console.log("Wrong!");
+        firstImage = undefined;
+        secondImage = undefined;
+      }
+    }
+  }
+  console.log(firstImage, secondImage);
 });
+
+function imageSrc() {
+  return event.target.firstChild.getAttribute('src');
+}
+
+function hideImages() {
+  document.querySelector('.images').style.display = 'none';
+}
 
 function showImage(event) {
   event.target.firstChild.style.display = 'block';
-  console.log(e.target.firstChild);
 }
 
 // Renders the random images into the cells
