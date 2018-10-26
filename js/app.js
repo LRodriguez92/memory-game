@@ -29,13 +29,16 @@ const level1 = {
 
 const level2 = {
   board:
-  [[1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
-   [0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
-   [1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
-   [0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
-   [1, 0, 1, 0, 1, 0, 1, 0, 1, 0]],
+  [[0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
+   [0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
+   [0, 1, 0, 0, 0, 0, 0, 0, 1, 0],
+   [0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
+   [0, 0, 0, 1, 1, 1, 1, 0, 0, 0]],
 
-   images: 5
+   images: 6,
+   time: 40,
+   penalty: 2,
+   bonus: 3
  };
 
   board.addEventListener('click', (event) => {
@@ -210,4 +213,4 @@ function renderBoard(level) {
   renderImages();
 }
 
-renderBoard(level1);
+renderBoard(level2);
