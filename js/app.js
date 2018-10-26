@@ -20,10 +20,9 @@ const level1 = {
    [0, 0, 1, 0, 0, 0, 0, 1, 0, 0]],
 
   images: 5,
-
   time: 10, // seconds
-
-  penalty: 2
+  penalty: 2, // seconds
+  bonus: 3 // seconds
 };
 
 const level2 = {
