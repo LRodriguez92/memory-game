@@ -10,6 +10,7 @@ let secondImage;
 let winningMatches; // Determined in renderBoard according to # of images per level
 let matches = 0; // Updates when there's a match
 let time;
+let canClick = true;
 
 const level1 = {
   board:
@@ -20,7 +21,7 @@ const level1 = {
    [0, 0, 1, 0, 0, 0, 0, 1, 0, 0]],
 
   images: 5,
-  time: 10, // seconds
+  time: 40, // seconds
   penalty: 2, // seconds
   bonus: 3 // seconds
 };
@@ -37,7 +38,7 @@ const level2 = {
  };
 
   board.addEventListener('click', (event) => {
-    if (timerEl.innerHTML != "Time's Up!") {
+    if (timerEl.innerHTML != "Time's Up!" && canClick) {
       getImages(event);
       isMatch();
       win();
@@ -69,6 +70,7 @@ function stopTimer() {
 
 function win() {
   if (matches === winningMatches) {
+    stopTimer();
     console.log('You Win!');
   }
 }
@@ -88,6 +90,7 @@ function isMatch() {
     } else {
       console.log("Wrong!");
       time -= currentLevel.penalty;
+      canClick = false;
       setTimeout(hideImages, 1000);
     }
   }
@@ -116,6 +119,7 @@ function hideImages() {
   secondImage.style.display = 'none';
   firstImage = undefined;
   secondImage = undefined;
+  canClick = true;
 }
 
 function showImage(event) {
