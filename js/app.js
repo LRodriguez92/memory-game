@@ -55,8 +55,10 @@ function timer(level) {
 
 const countDown = setInterval(() => {
   if (time > 1) {
-    time -= 1; console.log(time);
-    timerEl.innerHTML = time;
+    if (canClick) {
+      time -= 1; console.log(time);
+      timerEl.innerHTML = time;
+    }
   } else {
     timerEl.innerHTML = "Time's Up!";
     stopTimer();
@@ -71,6 +73,7 @@ function stopTimer() {
 function win() {
   if (matches === winningMatches) {
     stopTimer();
+    timerEl.innerHTML = "You Win!";
     console.log('You Win!');
   }
 }
@@ -84,13 +87,13 @@ function isMatch() {
     if (firstImage.getAttribute('src') === secondImage.getAttribute('src')) {
       console.log("Match!");
       matches += 1;
+      time += currentLevel.bonus;
       firstImage = undefined;
       secondImage = undefined;
-
     } else {
       console.log("Wrong!");
-      time -= currentLevel.penalty;
       canClick = false;
+      time -= currentLevel.penalty;
       setTimeout(hideImages, 1000);
     }
   }
@@ -115,11 +118,11 @@ function imageSrc() {
 
 // Hides images and clears first & second image variables
 function hideImages() {
+  canClick = true;
   firstImage.style.display = 'none';
   secondImage.style.display = 'none';
   firstImage = undefined;
   secondImage = undefined;
-  canClick = true;
 }
 
 function showImage(event) {
