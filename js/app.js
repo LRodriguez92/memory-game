@@ -4,6 +4,7 @@ const penaltyOrBonus = document.querySelector('#penalty-or-bonus');
 const images = ['images/dragon.png','images/ifrit.png', 'images/odin.png', 'images/caitsithfull.png', 'images/bahamut.png', 'images/naruto.png', 'images/midoriya.png', 'images/todoroki.png', 'images/brave.png', 'images/wolf.png'
 ];
 let currentLevel;
+let nextLevel;
 let levelImages = [];
 let randomImages = [];
 let firstImage;
@@ -13,33 +14,63 @@ let matches = 0; // Updates when there's a match
 let time;
 let canClick = true;
 
-const level1 = {
-  board:
-  [[0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
-   [0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
-   [0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
-   [0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
-   [0, 0, 1, 0, 0, 0, 0, 1, 0, 0]],
+const levels = [
+  {
+    board:
+    [[0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
+     [0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
+     [0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
+     [0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
+     [0, 0, 1, 0, 0, 0, 0, 1, 0, 0]],
 
-  images: 5,
-  time: 40, // seconds
-  penalty: 2, // seconds
-  bonus: 3 // seconds
-};
+    images: 5,
+    time: 40, // seconds
+    penalty: 2, // seconds
+    bonus: 3 // seconds
+  },
 
-const level2 = {
-  board:
-  [[0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
-   [0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
-   [0, 1, 0, 0, 0, 0, 0, 0, 1, 0],
-   [0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
-   [0, 0, 0, 1, 1, 1, 1, 0, 0, 0]],
+  {
+    board:
+    [[0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
+     [0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
+     [0, 1, 0, 0, 0, 0, 0, 0, 1, 0],
+     [0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
+     [0, 0, 0, 1, 1, 1, 1, 0, 0, 0]],
 
-   images: 6,
-   time: 40,
-   penalty: 2,
-   bonus: 3
- };
+     images: 6,
+     time: 40,
+     penalty: 2,
+     bonus: 3
+   }
+];
+
+// const level1 = {
+//   board:
+//   [[0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
+//    [0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
+//    [0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
+//    [0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
+//    [0, 0, 1, 0, 0, 0, 0, 1, 0, 0]],
+//
+//   images: 5,
+//   time: 40, // seconds
+//   penalty: 2, // seconds
+//   bonus: 3 // seconds
+// };
+//
+// const level2 = {
+//   board:
+//   [[0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
+//    [0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
+//    [0, 1, 0, 0, 0, 0, 0, 0, 1, 0],
+//    [0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
+//    [0, 0, 0, 1, 1, 1, 1, 0, 0, 0]],
+//
+//    images: 6,
+//    time: 40,
+//    penalty: 2,
+//    bonus: 3
+//  };
 
   board.addEventListener('click', (event) => {
     if (timerEl.innerHTML != "Time's Up!" && canClick) {
@@ -79,6 +110,8 @@ function win() {
     stopTimer();
     timerEl.innerHTML = "You Win!";
     console.log('You Win!');
+    // board.children.style.display = 'none';
+
   }
 }
 
@@ -93,7 +126,6 @@ function isMatch() {
       matches += 1;
       penaltyOrBonus.innerHTML = `+${currentLevel.bonus}`
       penaltyOrBonus.style.color = '#1b8700';
-      // penaltyOrBonus.style.display = 'flex';
       penaltyOrBonus.style.animation = 'timeMod 1s ease';
 
       time += currentLevel.bonus;
@@ -104,7 +136,6 @@ function isMatch() {
       canClick = false;
       penaltyOrBonus.innerHTML = `-${currentLevel.penalty}`
       penaltyOrBonus.style.color = '#981515';
-      // penaltyOrBonus.style.display = 'flex';
       penaltyOrBonus.style.animation = 'timeMod 1s ease';
       time -= currentLevel.penalty;
       setTimeout(hideImages, 1000);
@@ -213,4 +244,4 @@ function renderBoard(level) {
   renderImages();
 }
 
-renderBoard(level2);
+renderBoard(levels[1]);
