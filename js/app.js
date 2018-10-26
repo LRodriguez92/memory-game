@@ -1,5 +1,6 @@
 const board = document.querySelector('#board');
 const timerEl = document.querySelector('#timer');
+const penaltyOrBonus = document.querySelector('#penalty-or-bonus');
 const images = ['images/ifritfull.png', 'images/odinfull.png', 'images/sharingan.png', 'images/caitsithfull.png', 'images/bahamutfull.png',
 ];
 let currentLevel;
@@ -87,12 +88,21 @@ function isMatch() {
     if (firstImage.getAttribute('src') === secondImage.getAttribute('src')) {
       console.log("Match!");
       matches += 1;
+      penaltyOrBonus.innerHTML = `+${currentLevel.bonus}`
+      penaltyOrBonus.style.color = '#1b8700';
+      // penaltyOrBonus.style.display = 'flex';
+      penaltyOrBonus.style.animation = 'timeMod 1s ease';
+
       time += currentLevel.bonus;
       firstImage = undefined;
       secondImage = undefined;
     } else {
       console.log("Wrong!");
       canClick = false;
+      penaltyOrBonus.innerHTML = `-${currentLevel.penalty}`
+      penaltyOrBonus.style.color = '#981515';
+      // penaltyOrBonus.style.display = 'flex';
+      penaltyOrBonus.style.animation = 'timeMod 1s ease';
       time -= currentLevel.penalty;
       setTimeout(hideImages, 1000);
     }
@@ -121,6 +131,7 @@ function hideImages() {
   canClick = true;
   firstImage.style.display = 'none';
   secondImage.style.display = 'none';
+  penaltyOrBonus.style.animation = 'none';
   firstImage = undefined;
   secondImage = undefined;
 }
