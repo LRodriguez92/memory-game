@@ -21,7 +21,7 @@ const level1 = {
 
   images: 5,
 
-  time: 30, // seconds
+  time: 10, // seconds
 
   penalty: 2
 };
@@ -37,11 +37,14 @@ const level2 = {
    images: 5
  };
 
-board.addEventListener('click', (event) => {
-    getImages(event);
-    isMatch();
-    win();
-});
+  board.addEventListener('click', (event) => {
+    if (timerEl.innerHTML != "Time's Up!") {
+      getImages(event);
+      isMatch();
+      win();
+    }
+  });
+
 
 function timer(level) {
   time = level.time;
