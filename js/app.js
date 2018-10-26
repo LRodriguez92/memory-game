@@ -1,7 +1,7 @@
 const board = document.querySelector('#board');
 const timerEl = document.querySelector('#timer');
 const penaltyOrBonus = document.querySelector('#penalty-or-bonus');
-const images = ['images/ifritfull.png', 'images/odinfull.png', 'images/sharingan.png', 'images/caitsithfull.png', 'images/bahamutfull.png',
+const images = ['images/dragon.png','images/ifrit.png', 'images/odin.png', 'images/caitsithfull.png', 'images/bahamut.png', 'images/naruto.png', 'images/midoriya.png', 'images/todoroki.png', 'images/brave.png', 'images/wolf.png'
 ];
 let currentLevel;
 let levelImages = [];
