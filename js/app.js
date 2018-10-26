@@ -44,34 +44,6 @@ const levels = [
    }
 ];
 
-// const level1 = {
-//   board:
-//   [[0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
-//    [0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
-//    [0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
-//    [0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
-//    [0, 0, 1, 0, 0, 0, 0, 1, 0, 0]],
-//
-//   images: 5,
-//   time: 40, // seconds
-//   penalty: 2, // seconds
-//   bonus: 3 // seconds
-// };
-//
-// const level2 = {
-//   board:
-//   [[0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
-//    [0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
-//    [0, 1, 0, 0, 0, 0, 0, 0, 1, 0],
-//    [0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
-//    [0, 0, 0, 1, 1, 1, 1, 0, 0, 0]],
-//
-//    images: 6,
-//    time: 40,
-//    penalty: 2,
-//    bonus: 3
-//  };
-
   board.addEventListener('click', (event) => {
     if (timerEl.innerHTML != "Time's Up!" && canClick) {
       getImages(event);
@@ -80,6 +52,13 @@ const levels = [
     }
   });
 
+  function nextLevelIs(){
+    for (i=0;i<levels.length;i++){
+      if (currentLevel === levels[i]){
+        return levels[i+1];
+      }
+    }
+  }
 
 function timer(level) {
   time = level.time;
@@ -110,9 +89,17 @@ function win() {
     stopTimer();
     timerEl.innerHTML = "You Win!";
     console.log('You Win!');
-    // board.children.style.display = 'none';
-
+    reset();
   }
+}
+
+function reset() {
+  matches = 0;
+  for (let i = 0; i < 50; i++) {
+    let cell = document.querySelector(`.cell`);
+    cell.parentNode.removeChild(cell);
+  }
+  renderBoard(nextLevel);
 }
 
 function lose() {
@@ -214,6 +201,7 @@ function renderBoard(level) {
   let idNum = 0; // Used to add number to id names
   winningMatches = level.images; // winningMatches decides
   currentLevel = level;
+  nextLevel = nextLevelIs();
   timer(level);
   console.log(`winning matches is ${winningMatches}`);
   for (let i = 0; i < level.board.length; i++) {
@@ -231,7 +219,7 @@ function renderBoard(level) {
         idNum++;
       } else {
         let card = document.createElement('div');
-        card.className = 'empty-cell';
+        card.className = 'cell';
         card.style.backgroundColor = '#FFF';
         card.style.width = '10%';
         card.style.height = '20%';
@@ -244,4 +232,4 @@ function renderBoard(level) {
   renderImages();
 }
 
-renderBoard(levels[1]);
+renderBoard(levels[0]);
