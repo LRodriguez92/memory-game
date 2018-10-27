@@ -202,7 +202,7 @@ function renderImages() {
     img.className = 'images';
     cell.appendChild(img);
   }
-  setTimeout(previewImages, 2000);
+  setTimeout(previewImages, 1500);
 }
 
 function previewImages() {
