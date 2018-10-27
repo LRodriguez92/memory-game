@@ -1,6 +1,7 @@
 const root = document.querySelector('#root');
 const board = document.querySelector('#board');
 const timerEl = document.querySelector('#timer');
+const pauseBtn = document.querySelector('#pause-play');
 const penaltyOrBonus = document.querySelector('#penalty-or-bonus');
 const images = ['images/dragon.png','images/ifrit.png', 'images/odin.png', 'images/caitsithfull.png', 'images/bahamut.png', 'images/naruto.png', 'images/midoriya.png', 'images/todoroki.png', 'images/brave.png', 'images/wolf.png'
 ];
@@ -15,6 +16,7 @@ let matches = 0; // Updates when there's a match
 let time;
 let canClick = true;
 let countDown;
+let pause;
 
 const levels = [
   {
