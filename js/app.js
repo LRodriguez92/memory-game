@@ -1,3 +1,4 @@
+const root = document.querySelector('#root');
 const board = document.querySelector('#board');
 const timerEl = document.querySelector('#timer');
 const penaltyOrBonus = document.querySelector('#penalty-or-bonus');
@@ -27,7 +28,8 @@ const levels = [
     images: 5,
     time: 40, // seconds
     penalty: 2, // seconds
-    bonus: 3 // seconds
+    bonus: 3, // seconds
+    bg: 'images/background1.jpg'
   },
 
   {
@@ -41,7 +43,8 @@ const levels = [
      images: 6,
      time: 40,
      penalty: 2,
-     bonus: 3
+     bonus: 3,
+     bg: 'images/background2.jpg'
    }
 ];
 
@@ -217,6 +220,8 @@ function renderBoard(level) {
   nextLevel = nextLevelIs();
   timer(level);
   console.log(`winning matches is ${winningMatches}`);
+  root.style.background = `url(${level.bg})`;
+  root.style.backgroundSize = 'cover';
   for (let i = 0; i < level.board.length; i++) {
     for (let j = 0; j < level.board[i].length; j++) {
       if (level.board[i][j] === 1) {
@@ -233,7 +238,7 @@ function renderBoard(level) {
       } else {
         let card = document.createElement('div');
         card.className = 'cell';
-        card.style.backgroundColor = '#FFF';
+        card.style.opacity = '0';
         card.style.width = '10%';
         card.style.height = '20%';
         board.appendChild(card);
