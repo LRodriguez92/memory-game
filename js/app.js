@@ -1,7 +1,10 @@
 const root = document.querySelector('#root');
 const board = document.querySelector('#board');
 const timerEl = document.querySelector('#timer');
+const audio = new Audio('audio/chillwave.mp3');
 const pauseBtn = document.querySelector('#pause-play');
+const pause = document.querySelector('#pause');
+const play = document.querySelector('#play');
 const penaltyOrBonus = document.querySelector('#penalty-or-bonus');
 const images = ['images/dragon.png','images/ifrit.png', 'images/odin.png', 'images/caitsithfull.png', 'images/bahamut.png', 'images/naruto.png', 'images/midoriya.png', 'images/todoroki.png', 'images/brave.png', 'images/wolf.png'
 ];
@@ -16,7 +19,6 @@ let matches = 0; // Updates when there's a match
 let time;
 let canClick = true;
 let countDown;
-let pause;
 
 const levels = [
   {
@@ -51,15 +53,20 @@ const levels = [
 ];
 
   root.addEventListener('click', (event) => {
+    audio.play();
     if ((timerEl.innerHTML != "Time's Up!" && canClick) && (event.target.className === 'image-cell')) {
       getImages(event);
       isMatch();
       win();
     }
     if (event.target.id === 'pause') {
-
+      pause.style.display = 'none';
+      play.style.display = 'block';
+      audio.pause();
     } else if (event.target.id === 'play'){
-      
+      play.style.display = 'none';
+      pause.style.display = 'block';
+      audio.play();
     }
 
   });

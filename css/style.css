@@ -63,6 +63,10 @@ h1 {
   font-size: 32px;
 }
 
+#play {
+  display: none;
+}
+
 @keyframes timeMod {
   0% {
     opacity: 1;
