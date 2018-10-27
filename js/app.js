@@ -105,10 +105,15 @@ function stopTimer() {
 
 function win() {
   if (matches === winningMatches) {
-    stopTimer();
-    timerEl.innerHTML = "You Win!";
-    console.log('You Win!');
-    reset();
+    if (nextLevel) {
+      stopTimer();
+      timerEl.innerHTML = "You Win!";
+      console.log('You Win!');
+      reset();
+    } else {
+      stopTimer();
+      timerEl.innerHTML = "You Win!";
+    }
   }
 }
 
@@ -230,7 +235,9 @@ function renderBoard(level) {
         card.id = `cell${idNum}`;
         card.style.backgroundColor = '#000';
         card.style.backgroundSize = 'cover';
-        card.style.border = '#5c0202 solid';
+        card.style.border = '#00c7cac2 solid';
+        card.style.borderRadius = '10%';
+        card.style.opacity = '.9';
         card.style.width = '10%';
         card.style.height = '20%';
         board.appendChild(card);

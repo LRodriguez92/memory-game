@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Righteous', cursive;
 }
 
 #root {
@@ -22,6 +23,7 @@
   font-weight: bold;
   width: 60%;
   height: 15%;
+  color: #00c7cac2;
 }
 
 #board {
