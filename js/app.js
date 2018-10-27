@@ -52,6 +52,17 @@ const levels = [
     }
   });
 
+  function reset() {
+    matches = 0;
+    randomImages = [];
+    countDown;
+    for (let i = 0; i < 50; i++) {
+      let cell = document.querySelector(`.cell`);
+      cell.parentNode.removeChild(cell);
+    }
+    renderBoard(nextLevel);
+  }
+
   function nextLevelIs(){
     for (i=0;i<levels.length;i++){
       if (currentLevel === levels[i]){
@@ -91,15 +102,6 @@ function win() {
     console.log('You Win!');
     reset();
   }
-}
-
-function reset() {
-  matches = 0;
-  for (let i = 0; i < 50; i++) {
-    let cell = document.querySelector(`.cell`);
-    cell.parentNode.removeChild(cell);
-  }
-  renderBoard(nextLevel);
 }
 
 function lose() {
@@ -163,10 +165,16 @@ function showImage(event) {
 
 // Renders the random images into the cells
 function renderImages() {
+  let counter;
   for (let i = 0; i < randomImages.length; i++) {
     let cell = document.querySelector(`#cell${i}`);
+    console.log(`new cell is ${document.querySelector(`#cell${i}`)}`);
     let img = document.createElement('img');
     img.setAttribute('src', randomImages[i]);
+    console.log(`${randomImages[i]} generated`);
+    console.log(`counter = ${i}`);
+    console.log(`level images array = ${levelImages}`);
+    console.log(`random images array = ${randomImages}`);
     img.style.width = '100%';
     img.style.height = '100%';
     img.style.display = 'none';
