@@ -13,6 +13,7 @@ let winningMatches; // Determined in renderBoard according to # of images per le
 let matches = 0; // Updates when there's a match
 let time;
 let canClick = true;
+let countDown;
 
 const levels = [
   {
@@ -55,7 +56,7 @@ const levels = [
   function reset() {
     matches = 0;
     randomImages = [];
-    countDown;
+    countDown = setInterval(timeInterval, 1000);
     for (let i = 0; i < 50; i++) {
       let cell = document.querySelector(`.cell`);
       cell.parentNode.removeChild(cell);
@@ -73,12 +74,16 @@ const levels = [
 
 function timer(level) {
   time = level.time;
+  console.log(`time limit is ${time}`);
   timerEl.innerHTML = time;
   console.log(level.time);
-  countDown;
+  console.log(`countDown interval is ${countDown}`);
 }
 
-const countDown = setInterval(() => {
+countDown = setInterval(timeInterval, 1000);
+
+function timeInterval() {
+  console.log(`countdown is running`);
   if (time > 1) {
     if (canClick) {
       time -= 1; console.log(time);
@@ -88,7 +93,7 @@ const countDown = setInterval(() => {
     timerEl.innerHTML = "Time's Up!";
     stopTimer();
   }
-}, 1000);
+}
 
 function stopTimer() {
   lose();
@@ -168,13 +173,13 @@ function renderImages() {
   let counter;
   for (let i = 0; i < randomImages.length; i++) {
     let cell = document.querySelector(`#cell${i}`);
-    console.log(`new cell is ${document.querySelector(`#cell${i}`)}`);
+    // console.log(`new cell is ${document.querySelector(`#cell${i}`)}`);
     let img = document.createElement('img');
     img.setAttribute('src', randomImages[i]);
-    console.log(`${randomImages[i]} generated`);
-    console.log(`counter = ${i}`);
-    console.log(`level images array = ${levelImages}`);
-    console.log(`random images array = ${randomImages}`);
+    // console.log(`${randomImages[i]} generated`);
+    // console.log(`counter = ${i}`);
+    // console.log(`level images array = ${levelImages}`);
+    // console.log(`random images array = ${randomImages}`);
     img.style.width = '100%';
     img.style.height = '100%';
     img.style.display = 'none';
