@@ -181,13 +181,8 @@ function renderImages() {
   let counter;
   for (let i = 0; i < randomImages.length; i++) {
     let cell = document.querySelector(`#cell${i}`);
-    // console.log(`new cell is ${document.querySelector(`#cell${i}`)}`);
     let img = document.createElement('img');
     img.setAttribute('src', randomImages[i]);
-    // console.log(`${randomImages[i]} generated`);
-    // console.log(`counter = ${i}`);
-    // console.log(`level images array = ${levelImages}`);
-    // console.log(`random images array = ${randomImages}`);
     img.style.width = '100%';
     img.style.height = '100%';
     img.style.display = 'none';
@@ -224,7 +219,6 @@ function renderBoard(level) {
   currentLevel = level;
   nextLevel = nextLevelIs();
   timer(level);
-  console.log(`winning matches is ${winningMatches}`);
   root.style.background = `url(${level.bg})`;
   root.style.backgroundSize = 'cover';
   for (let i = 0; i < level.board.length; i++) {
