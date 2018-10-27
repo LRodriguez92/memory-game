@@ -50,8 +50,8 @@ const levels = [
    }
 ];
 
-  board.addEventListener('click', (event) => {
-    if (timerEl.innerHTML != "Time's Up!" && canClick) {
+  root.addEventListener('click', (event) => {
+    if ((timerEl.innerHTML != "Time's Up!" && canClick) && (event.target.className === 'image-cell')) {
       getImages(event);
       isMatch();
       win();
@@ -79,19 +79,15 @@ const levels = [
 
 function timer(level) {
   time = level.time;
-  console.log(`time limit is ${time}`);
   timerEl.innerHTML = time;
-  console.log(level.time);
-  console.log(`countDown interval is ${countDown}`);
 }
 
 countDown = setInterval(timeInterval, 1000);
 
 function timeInterval() {
-  console.log(`countdown is running`);
   if (time > 1) {
     if (canClick) {
-      time -= 1; console.log(time);
+      time -= 1;
       timerEl.innerHTML = time;
     }
   } else {
@@ -228,6 +224,7 @@ function renderBoard(level) {
       if (level.board[i][j] === 1) {
         let card = document.createElement('div');
         card.className = 'cell';
+        card.className = 'image-cell';
         card.id = `cell${idNum}`;
         card.style.backgroundColor = '#000';
         card.style.backgroundSize = 'cover';
