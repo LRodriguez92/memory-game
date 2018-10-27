@@ -54,7 +54,7 @@ const levels = [
 
   root.addEventListener('click', (event) => {
     audio.play();
-    if ((timerEl.innerHTML != "Time's Up!" && canClick) && (event.target.className === 'image-cell')) {
+    if ((timerEl.innerHTML != "Time's Up!" && canClick) && (event.target.classList[1] === 'image-cell')) {
       getImages(event);
       isMatch();
       win();
@@ -78,6 +78,7 @@ const levels = [
     countDown = setInterval(timeInterval, 1000);
     for (let i = 0; i < 50; i++) {
       let cell = document.querySelector(`.cell`);
+      console.log(cell.parentNode);
       cell.parentNode.removeChild(cell);
     }
     renderBoard(nextLevel);
@@ -197,7 +198,6 @@ function renderImages() {
     img.setAttribute('src', randomImages[i]);
     img.style.width = '100%';
     img.style.height = '100%';
-    // img.style.display = 'none';
     img.id = `img${i}`;
     img.className = 'images';
     cell.appendChild(img);
@@ -245,8 +245,8 @@ function renderBoard(level) {
     for (let j = 0; j < level.board[i].length; j++) {
       if (level.board[i][j] === 1) {
         let card = document.createElement('div');
-        card.className = 'cell';
-        card.className = 'image-cell';
+        card.classList.add('cell');
+        card.classList.add('image-cell');
         card.id = `cell${idNum}`;
         card.style.backgroundColor = '#000';
         card.style.backgroundSize = 'cover';
