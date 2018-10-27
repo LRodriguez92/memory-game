@@ -70,7 +70,6 @@ const levels = [
       audio.play();
       canClick = true;
     }
-
   });
 
   function reset() {
@@ -198,10 +197,18 @@ function renderImages() {
     img.setAttribute('src', randomImages[i]);
     img.style.width = '100%';
     img.style.height = '100%';
-    img.style.display = 'none';
+    // img.style.display = 'none';
     img.id = `img${i}`;
     img.className = 'images';
     cell.appendChild(img);
+  }
+  setTimeout(previewImages, 2000);
+}
+
+function previewImages() {
+  let images = document.querySelectorAll('.images');
+  for (let i = 0; i < images.length; i++) {
+    images[i].style.display = 'none';
   }
 }
 
