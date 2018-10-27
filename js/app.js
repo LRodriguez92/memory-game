@@ -56,6 +56,12 @@ const levels = [
       isMatch();
       win();
     }
+    if (event.target.id === 'pause') {
+
+    } else if (event.target.id === 'play'){
+      
+    }
+
   });
 
   function reset() {
