@@ -63,10 +63,12 @@ const levels = [
       pause.style.display = 'none';
       play.style.display = 'block';
       audio.pause();
+      canClick = false;
     } else if (event.target.id === 'play'){
       play.style.display = 'none';
       pause.style.display = 'block';
       audio.play();
+      canClick = true;
     }
 
   });
