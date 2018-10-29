@@ -33,7 +33,7 @@ const levels = [
      [0, 0, 1, 0, 0, 0, 0, 1, 0, 0]],
 
     images: 5,
-    time: 4, // seconds
+    time: 40, // seconds
     penalty: 2, // seconds
     bonus: 3, // seconds
     bg: 'images/background1.jpg'
@@ -61,9 +61,18 @@ const levels = [
       getImages(event);
       isMatch();
       win();
+    } else if (event.target.id === 'restart') {
+      restartLevel();
+      console.log('restarting');
     }
     ifPauseGame();
   });
+
+  function restartLevel() {
+    reset();
+    renderBoard(currentLevel);
+    resumeGame();
+  }
 
   function ifPauseGame() {
     if (event.target.id === 'pause') {
@@ -77,15 +86,19 @@ const levels = [
       overlay.style.zIndex = '2';
       pauseUi();
     } else if (event.target.id === 'play'){
-      play.style.display = 'none';
-      restart.style.display = 'none';
-      restart.style.paddingLeft = '0';
-      pause.style.display = 'flex';
-      audio.play();
-      canClick = true;
-      paused.parentNode.removeChild(paused);
-      overlay.style.display = 'none';
+      resumeGame();
     }
+  }
+
+  function resumeGame() {
+    play.style.display = 'none';
+    restart.style.display = 'none';
+    restart.style.paddingLeft = '0';
+    pause.style.display = 'flex';
+    audio.play();
+    canClick = true;
+    paused.parentNode.removeChild(paused);
+    overlay.style.display = 'none';
   }
 
   function pauseUi() {
@@ -104,10 +117,8 @@ const levels = [
     countDown = setInterval(timeInterval, 1000);
     for (let i = 0; i < 50; i++) {
       let cell = document.querySelector(`.cell`);
-      console.log(cell.parentNode);
       cell.parentNode.removeChild(cell);
     }
-    renderBoard(nextLevel);
   }
 
   function nextLevelIs(){
@@ -134,11 +145,11 @@ function timeInterval() {
   } else {
     timerEl.innerHTML = "Time's Up!";
     stopTimer();
+    lose();
   }
 }
 
 function stopTimer() {
-  lose();
   clearInterval(countDown);
 }
 
@@ -149,6 +160,7 @@ function win() {
       timerEl.innerHTML = "You Win!";
       console.log('You Win!');
       reset();
+      renderBoard(nextLevel);
     } else {
       stopTimer();
       timerEl.innerHTML = "You Win!";
