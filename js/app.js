@@ -36,7 +36,7 @@ const levels = [
      [0, 0, 1, 0, 0, 0, 0, 1, 0, 0]],
 
     images: 5,
-    time: 30, // seconds
+    time: 20, // seconds
     penalty: 2, // seconds
     bonus: 3, // seconds
     bg: 'images/background1.jpg'
@@ -160,7 +160,7 @@ function timeInterval() {
       time -= 1;
       timerEl.innerHTML = time;
     }
-  } else {
+  } else if (time <= 1) {
     timerEl.innerHTML = "Time's Up!";
     stopTimer();
     lose();
@@ -189,6 +189,7 @@ function win() {
 
 function lose() {
   overlay.style.display = 'flex';
+  overlay.style.zIndex = '2';
   play.style.display = 'none';
   pause.style.display = 'none';
   restart.style.display = 'flex';
