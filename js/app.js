@@ -10,21 +10,11 @@ const restart = document.querySelector('#restart');
 const penaltyOrBonus = document.querySelector('#penalty-or-bonus');
 const images = ['images/strider.png','images/ifrit.png', 'images/odin.png', 'images/caitsithfull.png', 'images/bahamut.png', 'images/naruto.png', 'images/midoriya.png', 'images/todoroki.png', 'images/brave.png', 'images/wolf.png', 'images/lightning.png'
 ];
-let currentLevel;
-let nextLevel;
+let currentLevel, nextLevel, firstImage, secondImage, winningMatches, time, countDown, title, text, talk;
 let levelImages = [];
 let randomImages = [];
-let firstImage;
-let secondImage;
-let winningMatches; // Determined in renderBoard according to # of images per level
 let matches = 0; // Updates when there's a match
-let time;
 let canClick = true;
-let countDown;
-let paused;
-let title;
-let text;
-let talk;
 
 const levels = [
   {
@@ -36,7 +26,7 @@ const levels = [
      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
 
     images: 6,
-    time: 40, // seconds
+    time: 20, // seconds
     penalty: 2, // seconds
     bonus: 3, // seconds
     bg: 'images/background1.jpg'
@@ -50,9 +40,9 @@ const levels = [
      [0, 0, 1, 0, 0, 0, 0, 1, 0, 0]],
 
     images: 5,
-    time: 35, // seconds
-    penalty: 2, // seconds
-    bonus: 3, // seconds
+    time: 35,
+    penalty: 2,
+    bonus: 3,
     bg: 'images/background2.jpg'
   },
 
@@ -107,10 +97,8 @@ const levels = [
       win();
     } else if (event.target.id === 'restart') {
       restartLevel();
-      console.log('restarting');
     } else if (event.target.id === 'start-button') {
       startGame();
-      console.log('game start');
     }
     ifPauseGame();
   });
@@ -174,7 +162,6 @@ const levels = [
   function reset() {
     matches = 0;
     randomImages = [];
-    // countDown = setInterval(timeInterval, 1000);
     for (let i = 0; i < 50; i++) {
       let cell = document.querySelector(`.cell`);
       cell.parentNode.removeChild(cell);
@@ -218,7 +205,6 @@ function win() {
     if (nextLevel) {
       stopTimer();
       timerEl.innerHTML = "You Win!";
-      console.log('You Win!');
       reset();
       renderBoard(nextLevel);
       countDown = setInterval(timeInterval, 1000);
@@ -236,13 +222,11 @@ function lose() {
   pause.style.display = 'none';
   restart.style.display = 'flex';
   countDown = setInterval(timeInterval, 1000);
-  console.log("Time's up!");
 }
 
 function isMatch() {
   if (firstImage && secondImage) {
     if (firstImage.getAttribute('src') === secondImage.getAttribute('src')) {
-      console.log("Match!");
       matches += 1;
       penaltyOrBonus.innerHTML = `+${currentLevel.bonus}`
       penaltyOrBonus.style.color = '#1b8700';
@@ -252,7 +236,6 @@ function isMatch() {
       firstImage = undefined;
       secondImage = undefined;
     } else {
-      console.log("Wrong!");
       canClick = false;
       penaltyOrBonus.innerHTML = `-${currentLevel.penalty}`
       penaltyOrBonus.style.color = '#981515';
@@ -344,7 +327,6 @@ function renderBoard(level) {
   currentLevel = level;
   nextLevel = nextLevelIs();
   timer(level);
-  // countDown = setInterval(timeInterval, 1000);
   root.style.background = `url(${level.bg})`;
   root.style.backgroundSize = 'cover';
   for (let i = 0; i < level.board.length; i++) {
