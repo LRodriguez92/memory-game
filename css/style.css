@@ -82,6 +82,33 @@
   align-items: center;
 }
 
+#title {
+  font-family: 'Permanent Marker', cursive;
+  position: relative;
+  top: -80px;
+  font-size: 140px;
+  color: #003fff;
+}
+
+#text {
+  color: #FFF;
+  font-size: 30px;
+  text-align: center;
+}
+
+#start-button {
+  height: 70px;
+  width: 170px;
+  font-size: 32px;
+  border-radius: 25px;
+  border: none;
+  background-color: #003fff;
+  color: #FFF;
+  position: relative;
+  top: 100px;
+  outline: none;
+}
+
 @keyframes timeMod {
   0% {
     opacity: 1;

@@ -22,6 +22,9 @@ let time;
 let canClick = true;
 let countDown;
 let paused;
+let title;
+let text;
+let talk;
 
 const levels = [
   {
@@ -56,7 +59,6 @@ const levels = [
 ];
 
   root.addEventListener('click', (event) => {
-    audio.play();
     if ((timerEl.innerHTML != "Time's Up!" && canClick) && (event.target.classList[1] === 'image-cell')) {
       getImages(event);
       isMatch();
@@ -64,9 +66,24 @@ const levels = [
     } else if (event.target.id === 'restart') {
       restartLevel();
       console.log('restarting');
+    } else if (event.target.id === 'start-button') {
+      startGame();
+      console.log('game start');
     }
     ifPauseGame();
   });
+
+  function startGame() {
+    audio.play();
+    pause.style.display = 'flex';
+    restart.style.display = 'none';
+    overlay.style.display = 'none';
+    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    title.parentNode.removeChild(title);
+    text.parentNode.removeChild(text);
+    start.parentNode.removeChild(start);
+    renderBoard(levels[0]);
+  }
 
   function restartLevel() {
     reset();
@@ -317,4 +334,26 @@ function renderBoard(level) {
   renderImages();
 }
 
-renderBoard(levels[0]);
+function landingPage() {
+  overlay.style.display = 'flex';
+  overlay.style.zIndex = '3';
+  overlay.style.flexDirection = "column";
+  overlay.style.backgroundColor = 'rgba(0, 0, 0, 1)';
+  play.style.display = 'none';
+  pause.style.display = 'none';
+  restart.style.display = 'none';
+  title = document.createElement('h1');
+  title.id = "title";
+  title.innerHTML = "MEMORY MATCH";
+  text = document.createElement('p');
+  text.id = 'text';
+  text.innerHTML = "Race against the clock to find every pair of matching images in order to win the game! \n But be careful, a wrong guess will shave seconds off your time! Guessing correctly will grant you bonus time. Good luck!"
+  start = document.createElement('button');
+  start.id = "start-button";
+  start.innerHTML = "PLAY!"
+  overlay.appendChild(title);
+  overlay.appendChild(text);
+  overlay.appendChild(start);
+}
+
+landingPage();
