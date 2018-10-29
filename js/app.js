@@ -8,7 +8,7 @@ const pause = document.querySelector('#pause');
 const play = document.querySelector('#play');
 const restart = document.querySelector('#restart');
 const penaltyOrBonus = document.querySelector('#penalty-or-bonus');
-const images = ['images/dragon.png','images/ifrit.png', 'images/odin.png', 'images/caitsithfull.png', 'images/bahamut.png', 'images/naruto.png', 'images/midoriya.png', 'images/todoroki.png', 'images/brave.png', 'images/wolf.png'
+const images = ['images/strider.png','images/ifrit.png', 'images/odin.png', 'images/caitsithfull.png', 'images/bahamut.png', 'images/naruto.png', 'images/midoriya.png', 'images/todoroki.png', 'images/brave.png', 'images/wolf.png'
 ];
 let currentLevel;
 let nextLevel;
