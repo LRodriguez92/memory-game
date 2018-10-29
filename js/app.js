@@ -33,7 +33,7 @@ const levels = [
      [0, 0, 1, 0, 0, 0, 0, 1, 0, 0]],
 
     images: 5,
-    time: 40, // seconds
+    time: 30, // seconds
     penalty: 2, // seconds
     bonus: 3, // seconds
     bg: 'images/background1.jpg'
@@ -174,6 +174,7 @@ function lose() {
   play.style.display = 'none';
   pause.style.display = 'none';
   restart.style.display = 'flex';
+  countDown = setInterval(timeInterval, 1000);
   console.log("Time's up!");
 }
 
@@ -282,6 +283,7 @@ function renderBoard(level) {
   currentLevel = level;
   nextLevel = nextLevelIs();
   timer(level);
+  // countDown = setInterval(timeInterval, 1000);
   root.style.background = `url(${level.bg})`;
   root.style.backgroundSize = 'cover';
   for (let i = 0; i < level.board.length; i++) {
