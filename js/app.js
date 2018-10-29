@@ -6,6 +6,7 @@ const audio = new Audio('audio/chillwave.mp3');
 const pauseBtn = document.querySelector('#pause-play');
 const pause = document.querySelector('#pause');
 const play = document.querySelector('#play');
+const restart = document.querySelector('#restart');
 const penaltyOrBonus = document.querySelector('#penalty-or-bonus');
 const images = ['images/dragon.png','images/ifrit.png', 'images/odin.png', 'images/caitsithfull.png', 'images/bahamut.png', 'images/naruto.png', 'images/midoriya.png', 'images/todoroki.png', 'images/brave.png', 'images/wolf.png'
 ];
@@ -68,6 +69,7 @@ const levels = [
     if (event.target.id === 'pause') {
       pause.style.display = 'none';
       play.style.display = 'block';
+      restart.style.display = 'block';
       audio.pause();
       canClick = false;
       overlay.style.display = 'flex';
@@ -75,6 +77,7 @@ const levels = [
       pauseUi();
     } else if (event.target.id === 'play'){
       play.style.display = 'none';
+      restart.style.display = 'none';
       pause.style.display = 'block';
       audio.play();
       canClick = true;
@@ -152,6 +155,7 @@ function win() {
 }
 
 function lose() {
+  overlay.style.display = 'flex';
   console.log("Time's up!");
 }
 

@@ -62,9 +62,15 @@
   left: 20px;
   font-size: 32px;
   z-index: 2;
+  display: flex;
 }
 
 #play {
+  display: none;
+}
+
+#restart {
+  padding-left: 14px;
   display: none;
 }
 
