@@ -114,7 +114,7 @@ const levels = [
   function reset() {
     matches = 0;
     randomImages = [];
-    countDown = setInterval(timeInterval, 1000);
+    // countDown = setInterval(timeInterval, 1000);
     for (let i = 0; i < 50; i++) {
       let cell = document.querySelector(`.cell`);
       cell.parentNode.removeChild(cell);
@@ -161,6 +161,7 @@ function win() {
       console.log('You Win!');
       reset();
       renderBoard(nextLevel);
+      countDown = setInterval(timeInterval, 1000);
     } else {
       stopTimer();
       timerEl.innerHTML = "You Win!";
