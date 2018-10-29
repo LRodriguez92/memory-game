@@ -33,7 +33,7 @@ const levels = [
      [0, 0, 1, 0, 0, 0, 0, 1, 0, 0]],
 
     images: 5,
-    time: 40, // seconds
+    time: 4, // seconds
     penalty: 2, // seconds
     bonus: 3, // seconds
     bg: 'images/background1.jpg'
@@ -68,8 +68,9 @@ const levels = [
   function ifPauseGame() {
     if (event.target.id === 'pause') {
       pause.style.display = 'none';
-      play.style.display = 'block';
-      restart.style.display = 'block';
+      play.style.display = 'flex';
+      restart.style.display = 'flex';
+      restart.style.paddingLeft = '14px';
       audio.pause();
       canClick = false;
       overlay.style.display = 'flex';
@@ -78,7 +79,8 @@ const levels = [
     } else if (event.target.id === 'play'){
       play.style.display = 'none';
       restart.style.display = 'none';
-      pause.style.display = 'block';
+      restart.style.paddingLeft = '0';
+      pause.style.display = 'flex';
       audio.play();
       canClick = true;
       paused.parentNode.removeChild(paused);
@@ -156,6 +158,9 @@ function win() {
 
 function lose() {
   overlay.style.display = 'flex';
+  play.style.display = 'none';
+  pause.style.display = 'none';
+  restart.style.display = 'flex';
   console.log("Time's up!");
 }
 
