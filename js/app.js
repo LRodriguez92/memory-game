@@ -97,8 +97,8 @@ const levels = [
     pause.style.display = 'flex';
     audio.play();
     canClick = true;
-    paused.parentNode.removeChild(paused);
     overlay.style.display = 'none';
+    paused.parentNode.removeChild(paused);
   }
 
   function pauseUi() {
