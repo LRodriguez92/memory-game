@@ -77,6 +77,7 @@ const levels = [
     audio.play();
     pause.style.display = 'flex';
     restart.style.display = 'none';
+    overlay.style.background = 'none';
     overlay.style.display = 'none';
     overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
     title.parentNode.removeChild(title);

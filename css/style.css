@@ -80,6 +80,7 @@
   display: none;
   justify-content: center;
   align-items: center;
+  background: url('../images/landing.jpg');
 }
 
 #title {
@@ -88,12 +89,14 @@
   top: -80px;
   font-size: 140px;
   color: #003fff;
+  text-shadow: 1px 5px 1px #000;
 }
 
 #text {
   color: #FFF;
   font-size: 30px;
   text-align: center;
+  text-shadow: 1px 5px 1px #000;
 }
 
 #start-button {
@@ -107,6 +110,7 @@
   position: relative;
   top: 100px;
   outline: none;
+  box-shadow: 1px 5px 1px #000;
 }
 
 @keyframes timeMod {
