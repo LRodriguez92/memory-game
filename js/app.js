@@ -8,7 +8,7 @@ const pause = document.querySelector('#pause');
 const play = document.querySelector('#play');
 const restart = document.querySelector('#restart');
 const penaltyOrBonus = document.querySelector('#penalty-or-bonus');
-const images = ['images/strider.png','images/ifrit.png', 'images/odin.png', 'images/caitsithfull.png', 'images/bahamut.png', 'images/naruto.png', 'images/midoriya.png', 'images/todoroki.png', 'images/brave.png', 'images/wolf.png'
+const images = ['images/strider.png','images/ifrit.png', 'images/odin.png', 'images/caitsithfull.png', 'images/bahamut.png', 'images/naruto.png', 'images/midoriya.png', 'images/todoroki.png', 'images/brave.png', 'images/wolf.png', 'images/lightning.png'
 ];
 let currentLevel;
 let nextLevel;
@@ -29,6 +29,20 @@ let talk;
 const levels = [
   {
     board:
+    [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+     [0, 0, 0, 1, 1, 1, 1, 0, 0, 0],
+     [0, 0, 0, 1, 1, 1, 1, 0, 0, 0],
+     [0, 0, 0, 1, 1, 1, 1, 0, 0, 0],
+     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
+
+    images: 6,
+    time: 40, // seconds
+    penalty: 2, // seconds
+    bonus: 3, // seconds
+    bg: 'images/background1.jpg'
+  },
+  {
+    board:
     [[0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
      [0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
      [0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
@@ -36,10 +50,10 @@ const levels = [
      [0, 0, 1, 0, 0, 0, 0, 1, 0, 0]],
 
     images: 5,
-    time: 20, // seconds
+    time: 35, // seconds
     penalty: 2, // seconds
     bonus: 3, // seconds
-    bg: 'images/background1.jpg'
+    bg: 'images/background2.jpg'
   },
 
   {
@@ -54,7 +68,35 @@ const levels = [
      time: 40,
      penalty: 2,
      bonus: 3,
-     bg: 'images/background2.jpg'
+     bg: 'images/background3.jpg'
+   },
+  {
+    board:
+    [[0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
+     [0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
+     [0, 0, 1, 1, 1, 0, 0, 1, 0, 0],
+     [0, 0, 1, 0, 1, 0, 0, 1, 0, 0],
+     [0, 0, 1, 0, 1, 0, 0, 1, 0, 0]],
+
+     images: 7,
+     time: 45,
+     penalty: 2,
+     bonus: 3,
+     bg: 'images/background4.jpg'
+   },
+  {
+    board:
+    [[0, 0, 0, 1, 0, 1, 0, 1, 0, 1],
+     [0, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+     [0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
+     [1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+     [0, 1, 0, 1, 0, 1, 0, 1, 0, 0]],
+
+     images: 11,
+     time: 60,
+     penalty: 2,
+     bonus: 5,
+     bg: 'images/background5.jpg'
    }
 ];
 
