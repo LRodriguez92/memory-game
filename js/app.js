@@ -1,6 +1,7 @@
 const root = document.querySelector('#root');
 const board = document.querySelector('#board');
 const timerEl = document.querySelector('#timer');
+const overlay = document.querySelector('#overlay');
 const audio = new Audio('audio/chillwave.mp3');
 const pauseBtn = document.querySelector('#pause-play');
 const pause = document.querySelector('#pause');
@@ -19,6 +20,7 @@ let matches = 0; // Updates when there's a match
 let time;
 let canClick = true;
 let countDown;
+let paused;
 
 const levels = [
   {
@@ -59,18 +61,37 @@ const levels = [
       isMatch();
       win();
     }
+    ifPauseGame();
+  });
+
+  function ifPauseGame() {
     if (event.target.id === 'pause') {
       pause.style.display = 'none';
       play.style.display = 'block';
       audio.pause();
       canClick = false;
+      overlay.style.display = 'flex';
+      overlay.style.zIndex = '2';
+      pauseUi();
     } else if (event.target.id === 'play'){
       play.style.display = 'none';
       pause.style.display = 'block';
       audio.play();
       canClick = true;
+      paused.parentNode.removeChild(paused);
+      overlay.style.display = 'none';
     }
-  });
+  }
+
+  function pauseUi() {
+    paused = document.createElement('h1');
+    paused.id = "paused";
+    paused.innerHTML = "PAUSED";
+    paused.style.fontSize = "70px";
+    paused.style.color = "#8696a0";
+    paused.style.textShadow = "1px 5px 1px #000";
+    overlay.appendChild(paused);
+  }
 
   function reset() {
     matches = 0;
